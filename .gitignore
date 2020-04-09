@@ -1,2 +1,5 @@
 # editor settings
 .vscode/
+
+# node modules
+*/node_modules
