@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-function App() {
+export default class AppComponent extends React.Component {
+  render() {
+    return <Tweet />;
+  }
+}
+
+function Tweet() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="tweet">
+      <Avatar />
+      Tweet
     </div>
   );
 }
 
-export default App;
+function Avatar() {
+  return (
+    <img
+      className="avatar"
+      src="https://gravatar.com/avatar/nothing"
+      alt="avatar"
+    />
+  );
+}
+
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
