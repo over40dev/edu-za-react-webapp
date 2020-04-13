@@ -19,8 +19,8 @@ function Tweet() {
     <div className="tweet">
       <Avatar />
       <div className="content">
-        <NameWithHandle />
-        <Time />
+        <NameWithHandle name="My Name" handle="@myhandlde" />
+        <Time hours={10}/>
         <Message />
         <div className="buttons">
           <LikeButton />
@@ -43,11 +43,11 @@ function Avatar() {
   );
 }
 
-function NameWithHandle() {
+function NameWithHandle({name, handle}) {
   return (
     <>
-      <span className="name">Your Name</span>
-      <span className="name">@yourhandle</span>
+      <span className="name">{name}</span>
+      <span className="name">{handle}</span>
     </>
   );
 }
@@ -56,7 +56,7 @@ function Message() {
   return <div className="message">This is less than 140 characters!</div>;
 }
 
-const Time = () => <span className="time">3h ago</span>;
+const Time = (props) => <span className="time">{props.hours}h ago</span>;
 
 const LikeButton = () => <FontAwesomeIcon className="button" icon={faHeart} />;
 
