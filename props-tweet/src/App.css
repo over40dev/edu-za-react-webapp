@@ -43,10 +43,22 @@
 
 .buttons {
   margin-top: 10px;
+  margin-left: 2px;
   font-size: 1.4em;
   color: #aab8c2;
 }
 
-.buttons > .button {
-  width: 50px;
+.like-button, .comment-button,
+.share-button, .retweet-button {
+  width: 80px;
+  display: inline-block;
 }
+
+.like-count, .retweet-count {
+  position: relative;
+  bottom: 2px;
+  margin-left: 6px;
+  font-size: .7em;
+  font-weight: bold;
+}
+
