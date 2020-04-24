@@ -1,0 +1,14 @@
+.CartPage-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.CartItem-count {
+  padding: 5px 10px;
+  border: 1px solid #cccccc;
+}
+
+
+
+
