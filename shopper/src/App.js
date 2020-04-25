@@ -5,26 +5,44 @@ import CartPage from './CartPage';
 import { items } from './static-data';
 import './App.css';
 
-const App = () => {
-  const [activeTab, setActiveTab] = useState('items');
-  const [cart, setCart] = useState([]);
+class App extends React.Component {
 
-  const addToCart = (item) => {
-    const prevCart = [...cart];
-    setCart([...prevCart, item]);
-  };
+  state = {
+    activeTab: 0,
+    cart: [],
+  }
 
-  return (
+  handleTabChange = (index) => {
+    this.setState({
+      activeTab: index,
+    });
+  }
+  
+  handleAddToCart = (item) => {
+    this.setState({
+      cart: [...this.state.cart, item.id],
+    });
+  }
+  
+  handleRemoveOne = (item) => {
+    const index = this.state.cart.indexOf(item.id);
+    this.setState({
+      ...this.state.cart.slice(0, index),
+      ...this.state.cart.slice(index + 1),
+    });
+  }
+  
+  render() {
     <div className="App">
-      <Nav activeTab={activeTab} onTabChange={setActiveTab} />
-      <main className="App-content">
-        <span>
-          <Content tab={activeTab} handleAddToCart={addToCart} />
-        </span>
-      </main>
-    </div>
-  );
-};
+    <Nav activeTab={activeTab} onTabChange={this.handleTabChange} />
+    <main className="App-content">
+      <span>
+        <Content tab={activeTab} onAddToCart={this.handleAddToCart} />
+      </span>
+    </main>
+  </div>
+  }
+}
 
 const Content = ({ tab, handleAddToCart }) => {
   switch (tab) {
