@@ -1,13 +1,14 @@
 import React from 'react';
 import Nav from './Nav';
-// import ItemPage from './ItemPage';
-// import CartPage from './CartPage';
-// import { items } from './static-data';
+import ItemPage from './ItemPage';
+import CartPage from './CartPage';
+import { items } from './static-data';
 import './App.css';
 
 class App extends React.Component {
   state = {
     activeTab: 0,
+    items: [...items],
     cart: {},
   };
 
@@ -44,37 +45,45 @@ class App extends React.Component {
     });
   };
 
+  renderCartPage() {
+    // create an array of cart items including count
+    // const cartItems = cartIds.map((itemId) => {
+    //   const count = this.state.cart[itemId];
+    //   const item = this.state.items.find(item => item.id === parseInt(itemId));
+    //   return {
+    //     ...item,
+    //     count,
+    //   }
+    // });
+  }
+
+  renderContent() {
+    // renderContent determines which page should be rendered based on the tab selected
+    switch (this.state.activeTab) {
+      default:
+      case 0: // ItemPage
+        return <ItemPage items={this.state.items} addToCart={this.addToCart} />;
+      case 1: // CartPage
+        return (
+          <CartPage
+            cart={this.state.cart}
+            items={this.state.items}
+            addToCart={this.addToCart}
+            removeFromCart={this.removeFromCart}
+          />
+        );
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <Nav activeTab={this.state.activeTab} tabChange={this.tabChange} />
-        <main className="App-content">
-          <span>render Content here!</span>
-        </main>
+        <main className="App-content">{this.renderContent()}</main>
       </div>
     );
   }
 }
-
-// const Content = ({ tab, addToCart }) => {
-//   switch (tab) {
-//     case 0:
-//       return (
-//         <>
-//           <h2>Items</h2>
-//           <ItemPage items={items} addToCart={addToCart} />
-//         </>
-//       );
-//     case 1:
-//       return (
-//         <>
-//           <h2>Cart</h2>
-//         </>
-//       );
-//     default:
-//       return <h2>No Content</h2>;
-//   }
-// };
 
 // const summarizeCart = (cart) => {
 //   const groupedItems = cart.reduce((summary, item) => {
